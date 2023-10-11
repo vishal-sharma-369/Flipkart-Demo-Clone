@@ -2,7 +2,7 @@
 const express = require("express");
 require("dotenv").config();
 const { connection } = require("./database/db");
-// const defaultData = require("./default");
+// const defaultData = require("./default");   // Uncomment this line when you want to reinitialize your application on a new environment.
 const Router = require("./routes/route");
 const cors = require("cors");
 const app = express();
@@ -16,8 +16,8 @@ const port = 4000;
 const username = process.env.MONGODB_USERNAME;
 const password = process.env.MONGODB_PASSWORD;
 connection(username, password);
-app.listen(port, () => {
+app.listen(port,async () => {
   console.log("Server started listening at port: ", port);
 });
 
-// defaultData();
+// defaultData(); // Uncomment this line when you want to reinitialize your application

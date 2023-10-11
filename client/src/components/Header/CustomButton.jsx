@@ -56,7 +56,7 @@ const CustomButtons = () => {
       {account ? (
         <Profile account={account} setAccount={setAccount} />
       ) : (
-        <LoginButton variant="contained" onClick={openDialog}>
+        <LoginButton variant="contained" onClick={openDialog} >
           Login
         </LoginButton>
       )}

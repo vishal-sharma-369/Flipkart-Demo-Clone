@@ -17,7 +17,7 @@ const Profile = ({ account, setAccount }) => {
     setOpen(event.currentTarget);
   };
   const handleClose = (event) => {
-    setOpen(false);
+    setOpen(null);
   };
   const logoutUser = () => {
     setAccount("");
@@ -25,16 +25,28 @@ const Profile = ({ account, setAccount }) => {
 
   return (
     <>
-      <Box sx={{ marginLeft: 2 }} onClick={handleClick}>
-        <Typography style={{ marginTop: 2, cursor: "pointer" }}>
+      <Box sx={{ marginLeft: 2 }}>
+        <Typography 
+          id="profile" 
+          style={{ marginTop: 2, cursor: "pointer" }} 
+          aria-controls={open ? 'basic-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          onClick={handleClick}
+        >
           {account}
         </Typography>
-        <Component anchorEl={open} open={Boolean(open)} onClose={handleClose}>
+        <Component id="basic-menu" anchorEl={open} open={(open)} onClick={handleClose} MenuListProps={{
+          'aria-labelledby': 'profile',
+        }}
+>
           <MenuItem
             onClick={() => {
               handleClose();
               logoutUser();
             }}
+            
+            onClose={handleClose}
           >
             <PowerSettingNewIcon color="primary" fontSize="small" />
             <Logout>Logout</Logout>
